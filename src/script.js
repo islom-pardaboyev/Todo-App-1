@@ -3,6 +3,11 @@
 const inputEl = document.querySelector("#input");
 const addBtn = document.querySelector("#addBtn");
 const todoField = document.querySelector("#todoField");
+const changeTodoModal = document.querySelector("#changeTodoModal");
+const changeTodoInput = document.querySelector("#changeTodoInput");
+const changeTodoBtn = document.querySelector("#changeTodoBtn");
+
+// Array
 let todoArray = [];
 
 function renderTodo() {
@@ -32,13 +37,19 @@ function renderTodo() {
   editButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
       const index = e.target.getAttribute("data-index");
-      // Implement edit functionality here
-      const newTodoTitle = prompt("Enter new title for todo:");
-      if (newTodoTitle !== null && newTodoTitle !== "") {
-        todoArray[index].title = newTodoTitle;
+      changeTodoModal.classList.remove("hidden");
+      document.querySelector("#container").classList.add("blur-lg")
+      changeTodoInput.value = todoArray[index].title;
+
+      changeTodoBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const inputValue = changeTodoInput.value;
+        todoArray[index].title = inputValue;
         saveTodoArrayToLocalStorage();
         renderTodo();
-      }
+        changeTodoModal.classList.add("hidden");
+        document.querySelector("#container").classList.remove("blur-lg")
+      });
     });
   });
 
