@@ -6,7 +6,7 @@ const todoField = document.querySelector("#todoField");
 const changeTodoModal = document.querySelector("#changeTodoModal");
 const changeTodoInput = document.querySelector("#changeTodoInput");
 const changeTodoBtn = document.querySelector("#changeTodoBtn");
-
+const todoContainer = document.querySelector("#container")
 // Array
 let todoArray = [];
 
@@ -38,7 +38,7 @@ function renderTodo() {
     button.addEventListener("click", (e) => {
       const index = e.target.getAttribute("data-index");
       changeTodoModal.classList.remove("hidden");
-      document.querySelector("#container").classList.add("blur-lg")
+      todoContainer.classList.add("blur-lg")
       changeTodoInput.value = todoArray[index].title;
 
       changeTodoBtn.addEventListener("click", (e) => {
@@ -48,7 +48,7 @@ function renderTodo() {
         saveTodoArrayToLocalStorage();
         renderTodo();
         changeTodoModal.classList.add("hidden");
-        document.querySelector("#container").classList.remove("blur-lg")
+        todoContainer.classList.remove("blur-lg")
       });
     });
   });
