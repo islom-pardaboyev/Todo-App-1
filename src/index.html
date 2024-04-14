@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- tailwind css -->
+    <link rel="stylesheet" href="./output.css">
+    <!-- google fonts poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <!-- font awesome icon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<style>
+    #title{
+        background: linear-gradient(#2193b0, #6dd5ed);
+        -webkit-background-clip: text;
+        color: transparent;
+
+    }
+</style>
+
+<body class="flex font-poppins select-none items-center justify-center min-h-screen w-full bg-[#191919]">
+
+    <main class="text-center">
+        <h1 id="title" class="text-3xl mb-3 text-white font-bold">Todo List</h1>
+        <div class="bg-white py-3 p-5 w-[70vw] rounded-xl">
+            <div class="flex gap-3 py-5 border-b-black border-b">
+                <input id="input" type="text"
+                    class="border border-gray-600/40 focus:outline-sky-600 p-4 w-full rounded-md"
+                    placeholder="Enter Todo....">
+                <button id="addBtn"
+                    class="bg-sky-500 text-white px-6 py-3 rounded-md font-medium text-base">Add</button>
+            </div>
+
+            <div class="py-5" id="todoField">
+                <div class="mt-4 bg-gray-500/30 p-3 flex items-center justify-between">
+                    <p id="todoItem" class="text-lg font-medium">ToDo</p>
+                    <div class="flex items-center gap-4">
+                        <i id="editBtn"
+                            class="fa-solid fa-pen-to-square p-3 bg-green-600 text-white cursor-pointer hover:bg-green-700 transition-all"></i>
+                        <i id="deleteBtn"
+                            class="fa-solid fa-trash-can text-white p-3 bg-red-600 hover:bg-red-700 cursor-pointer transition-all"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- custom js -->
+    <script src="./script.js"></script>
+</body>
+
+</html>
