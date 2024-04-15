@@ -6,7 +6,12 @@ const todoField = document.querySelector("#todoField");
 const changeTodoModal = document.querySelector("#changeTodoModal");
 const changeTodoInput = document.querySelector("#changeTodoInput");
 const changeTodoBtn = document.querySelector("#changeTodoBtn");
-const todoContainer = document.querySelector("#container")
+const todoContainer = document.querySelector("#container");
+const deleteContainer = document.querySelector("#deleteContainer");
+const deleteBtn = document.querySelector("#deleteBtn");
+const checkTodoContainer = document.querySelector("#checkTodoContainer");
+const closeCheckTodoBtn = document.querySelector("#closeCheckTodoBtn");
+
 // Array
 let todoArray = [];
 
@@ -38,7 +43,7 @@ function renderTodo() {
     button.addEventListener("click", (e) => {
       const index = e.target.getAttribute("data-index");
       changeTodoModal.classList.remove("hidden");
-      todoContainer.classList.add("blur-lg")
+      todoContainer.classList.add("blur-lg");
       changeTodoInput.value = todoArray[index].title;
 
       changeTodoBtn.addEventListener("click", (e) => {
@@ -48,17 +53,29 @@ function renderTodo() {
         saveTodoArrayToLocalStorage();
         renderTodo();
         changeTodoModal.classList.add("hidden");
-        todoContainer.classList.remove("blur-lg")
+        todoContainer.classList.remove("blur-lg");
       });
     });
   });
 
-  deleteButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-      const index = e.target.getAttribute("data-index");
-      todoArray.splice(index, 1);
-      saveTodoArrayToLocalStorage();
-      renderTodo();
+  deleteButtons.forEach((button, index) => {
+    button.addEventListener("click", () => {
+      deleteContainer.classList.remove("hidden");
+      todoContainer.classList.add("blur-lg");
+      todoContainer.classList.add("pointer-events-none");
+
+      deleteBtn.onclick = () => {
+        try {
+          todoArray.splice(index, 1);
+          saveTodoArrayToLocalStorage();
+          renderTodo();
+          deleteContainer.classList.add("hidden");
+          todoContainer.classList.remove("blur-lg");
+          todoContainer.classList.remove("pointer-events-none");
+        } catch (error) {
+          console.error("Error deleting todo item:", error);
+        }
+      };
     });
   });
 
@@ -82,7 +99,14 @@ function addTodo() {
     if (todoTitle === "") {
       alert("Please enter a todo");
     } else if (todoArray.some((todo) => todo.title === todoTitle)) {
-      alert("Todo already exists");
+      checkTodoContainer.classList.remove('hidden')
+      todoContainer.classList.add('blur-lg')
+      closeCheckTodoBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+
+        todoContainer.classList.remove('blur-lg')
+        checkTodoContainer.classList.add('hidden')        
+      })
     } else {
       const todoObj = {
         title: todoTitle,

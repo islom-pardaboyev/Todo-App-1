@@ -53,9 +53,16 @@
     </div>
 
     <!-- delete todo -->
-    <div class="p-4 absolute text-center hidden top-[50%] w-[40vw] left-[50%] translate-x-[-50%] flex flex-col gap-5 drop-shadow-2xl translate-y-[-50%] bg-white">
+    <div id="deleteContainer" class="p-4 absolute text-center hidden top-[50%] w-[40vw] left-[50%] translate-x-[-50%] flex flex-col gap-5 drop-shadow-2xl translate-y-[-50%] bg-white">
         <i class="fa-solid fa-trash-can text-red-600 text-3xl"></i>
-        <button class="bg-red-500 cursor-pointer text-white py-2 rounded-lg">Are You Sure?</button>
+        <button id="deleteBtn" class="bg-red-500 cursor-pointer text-white py-2 rounded-lg">Are You Sure?</button>
+    </div>
+
+    <!-- check todo title -->
+    <div id="checkTodoContainer" class="absolute hidden top-[50%] left-[50%] flex rounded-lg overflow-hidden flex-col gap-3 translate-y-[-50%] shadow-xl text-center bg-white p-4 text-green-500 translate-x-[-50%]">
+        <i id="closeCheckTodoBtn" class="fa-solid cursor-pointer fa-xmark absolute right-0 top-0 bg-red-400 p-2"></i>
+        <h1 class="mt-6 font-bold text-xl">ToDo Is Already Exist!</h1>
+        <i class="fa-solid fa-face-rolling-eyes text-3xl"></i>
     </div>
 
 
