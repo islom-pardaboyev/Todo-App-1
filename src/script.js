@@ -9,8 +9,7 @@ const changeTodoBtn = document.querySelector("#changeTodoBtn");
 const todoContainer = document.querySelector("#container");
 const deleteContainer = document.querySelector("#deleteContainer");
 const deleteBtn = document.querySelector("#deleteBtn");
-const checkTodoContainer = document.querySelector("#checkTodoContainer");
-const closeCheckTodoBtn = document.querySelector("#closeCheckTodoBtn");
+const error = document.querySelector("#error");
 
 // Array
 let todoArray = [];
@@ -97,16 +96,19 @@ function addTodo() {
     const todoTitle = inputEl.value.trim();
 
     if (todoTitle === "") {
-      alert("Please enter a todo");
-    } else if (todoArray.some((todo) => todo.title === todoTitle)) {
-      checkTodoContainer.classList.remove('hidden')
-      todoContainer.classList.add('blur-lg')
-      closeCheckTodoBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+      error.innerHTML = "Input Can't Be Empty";
+      error.classList.remove("hidden");
 
-        todoContainer.classList.remove('blur-lg')
-        checkTodoContainer.classList.add('hidden')        
-      })
+      setTimeout(() => {
+        error.classList.add("hidden");
+      }, 3000);
+    } else if (todoArray.some((todo) => todo.title === todoTitle)) {
+      error.classList.remove("hidden");
+      error.innerHTML = "This ToDo is Already Exist!";
+
+      setTimeout(() => {
+        error.classList.add("hidden");
+      }, 3000);
     } else {
       const todoObj = {
         title: todoTitle,
